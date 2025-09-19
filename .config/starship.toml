@@ -1,0 +1,145 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = false
+right_format = """$username$hostname$battery $time"""
+
+
+# Replace the '❯' symbol in the prompt with '➜'
+[character]
+disabled = false
+success_symbol = '[ ❯❯](bold fg:color_green)'
+error_symbol = '[ 󱈸󱈸](bold fg:color_red)'
+
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+
+[time]
+disabled = false
+time_format = "%R"
+style = "bg:color_bg1"
+format = '[[ $time](fg:color_fg0 bg:color_bg1)]($style)'
+
+
+[directory]
+style = "fg:#e3e5e5 bg:#769ff0"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[username]
+show_always = true
+#style_user = "fg:#e3e5e5 bg:"
+#style_root = "fg:#e3e5e5 bg:#769ff0"
+format = '[ $user]($style)'
+
+
+[hostname]
+ssh_only = false
+format = '@[$hostname](bold red) [$ssh_symbol](bold blue)'
+trim_at = '.rico365.com'
+disabled = false
+
+[os]
+disabled = false
+#style = "bg:color_orange fg:color_fg0"
+
+[os.symbols]
+Windows = "󰍲"
+Ubuntu = "󰕈"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = "󰀵"
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "󰣛"
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = "󰣇"
+Artix = "󰣇"
+EndeavourOS = ""
+CentOS = ""
+Debian = "󰣚"
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
+Pop = ""
+
+[container]
+disabled = true
+
+# [status]
+# style = 'bg:blue'
+# symbol = '🔴 '
+# success_symbol = '🟢 SUCCESS'
+# format = '[\[$symbol$common_meaning$signal_name$maybe_int\]]($style) '
+# map_symbol = true
+# disabled = false
+
+[azure]
+disabled = false
+format = '[ $symbol ($subscription) ]($style)'
+symbol = '󰠅 '
+style = 'blue bold'
+
+[c]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[ $symbol ($version) ]($style)'
+
+[cpp]
+symbol = " "
+style = "bg:#86BBD8"
+format = '[ $symbol ($version) ]($style)'
+
+[docker_context]
+symbol = " "
+style = "bg:#06969A"
+format = '[ $symbol $context ]($style)'
+
+[git_branch]
+symbol = ""
+style = "bg:#FCA17D"
+format = '[ $symbol $branch ]($style)'
+
+[git_status]
+style = "bg:#FCA17D"
+format = '[$all_status$ahead_behind ]($style)'
+
+[nodejs]
+symbol = ""
+style = "bg:#86BBD8"
+format = '[ $symbol ($version) ]($style)'
+
+[rust]
+symbol = ""
+style = "bg:#86BBD8"
+format = '[ $symbol ($version) ]($style)'
+
+[battery]
+full_symbol = '🔋 '
+charging_symbol = '⚡️ '
+discharging_symbol = '💀 '
+format = '[$symbol$percentage]($style)'
+
+[[battery.display]]
+threshold = 10
+style = 'bold red'
+
+[[battery.display]]
+threshold = 50
+style = 'bold yellow'
+
+[[battery.display]]
+threshold = 80
+style = 'bold green'
+
+[[battery.display]]
+threshold = 100
+style = 'green'
