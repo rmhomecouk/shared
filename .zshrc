@@ -1,4 +1,3 @@
-fastfetch --config examples/6.jsonc
 
 
 export CONFIG_VERSION=1.8
@@ -133,11 +132,12 @@ alias sync-down="rsync pve1.rico365.com:/mnt/data/shared ~/ -r"
 if [[ $OSTYPE == linux* && $CPUTYPE == x86_64 ]]; then
 #  echo "linux-x86"
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 #  eval "$(starship init zsh)"
   source /home/linuxbrew/.linuxbrew/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
   source /home/linuxbrew/.linuxbrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
   source /home/linuxbrew/.linuxbrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-  source /home/linuxbrew/.linuxbrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+  ¢source /home/linuxbrew/.linuxbrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 fi
 
 if [[ $OSTYPE == darwin* && $CPUTYPE == arm64 ]]; then
@@ -151,6 +151,8 @@ if [[ $OSTYPE == darwin* && $CPUTYPE == arm64 ]]; then
 fi
 
 eval "$(starship init zsh)"
+
+fastfetch --config examples/6.jsonc
 
 
 echo ""
