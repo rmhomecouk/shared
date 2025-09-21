@@ -137,7 +137,7 @@ if [[ $OSTYPE == linux* && $CPUTYPE == x86_64 ]]; then
   source /home/linuxbrew/.linuxbrew/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
   source /home/linuxbrew/.linuxbrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
   source /home/linuxbrew/.linuxbrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-  ¢source /home/linuxbrew/.linuxbrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+  source /home/linuxbrew/.linuxbrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 fi
 
 if [[ $OSTYPE == darwin* && $CPUTYPE == arm64 ]]; then
@@ -148,6 +148,13 @@ if [[ $OSTYPE == darwin* && $CPUTYPE == arm64 ]]; then
   source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
   source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
+  # The following lines have been added by Docker Desktop to enable Docker CLI completions.
+  fpath=(/Users/rico/.docker/completions $fpath)
+  autoload -Uz compinit
+  compinit
+  # End of Docker CLI completions
+
 fi
 
 eval "$(starship init zsh)"
