@@ -159,7 +159,14 @@ fi
 
 eval "$(starship init zsh)"
 
-fastfetch --config examples/6.jsonc
+
+if [[ "$(hostname)" == *adguard* ]]; then
+  echo "AdGuard detected in hostname: $(hostname)"
+  fastfetch --config ~/shared/fastfetch/adguard.jsonc
+else
+  fastfetch --config examples/6.jsonc
+fi
+
 
 
 echo ""
