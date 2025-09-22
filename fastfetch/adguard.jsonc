@@ -1,0 +1,166 @@
+// Fastfetch Config for AdGuard VM
+// Based on Example #25 (https://github.com/fastfetch-cli/fastfetch/blob/dev/presets/examples/25.jsonc)
+// Most comments removed here; refer to #25
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        "type": "file",
+        "source": "adguard_ascii.txt",
+        "padding": {
+            "top": 0
+        },
+        "color": {
+            "1": "\u001b[38;2;91;159;107m",
+            "2": "\u001b[38;2;255;255;255m"
+        }
+    },
+    "display": {
+        "color": {
+            "keys": "" // 
+        },
+        "separator": "\uf061\u001b[2C",
+        "constants": [
+            "\u001b[s",                 // {$1} - ANSI escape: save cursor position (ESC[s)
+            "\u001b[u\u001b[10C",       // {$2} - ANSI escape: restore cursor to saved position (ESC[u) then
+                                        //      ANSI escape: move cursor right 10 columns (ESC[10C)
+            "\u001b[38;2;91;159;107m"  // {$3} - Colour - AdGuard Green
+        ],
+        "brightColor": false
+    },
+    // Top section with Proxmox colour theme
+    "modules": [
+        {
+            "type": "break"
+        },
+        {
+            "type": "version",
+            "key": " ",
+            "format": "\uD83D\uDE80\u001b[1m{#bright_green} {1} - {2} "
+        },
+        {
+            "type": "title",
+            "keyIcon": "\uf007",
+            "key": "{$3}├─ {icon}  {$1}Login{$2}"
+        },
+        {
+            "type": "os",
+            "key": "{$3}├─ {icon}  {$1}{sysname}{$2}"
+        },
+        {
+            "type": "kernel",
+            "key": "{$3}├─ {icon}  {$1}Kernel{$2}",
+            "format": "{sysname} {release}"
+        },
+        {
+            "type": "bios",
+            "key": "{$3}├─ {icon}  {$1}BIOS{$2}",
+            "keyIcon": "\uDB81\uDE1A"
+        },
+        {
+            "type": "shell",
+            "key": "{$3}├─ {icon}  {$1}Shell{$2}"
+        },
+        {
+            "type": "editor",
+            "key": "{$3}├─ {icon}  {$1}Editor{$2}",
+            "keyIcon": "\uE6AE"
+        },
+        {
+            "type": "command",
+            "keyIcon": "\uE760",
+            "key": "{$3}├─ {icon}  {$1}OhMyPosh{$2}",
+            "text": "oh-my-posh version"
+        },
+        {
+            "type": "command",
+            "keyIcon": "\uED25",
+            "key": "{$3}╰─ {icon}  {$1}AdGuard{$2}",
+            "text": "/opt/AdGuardHome/AdGuardHome --version | awk '{print $4}'"
+        },
+        "break",
+        // Hardware section with cyan colour theme
+        {
+            "type": "custom",
+            "key": " ",
+            "format": "\uD83D\uDDA5 {#bright_cyan} Hardware "
+        },
+        {
+            "type": "command",
+            "key": "{#cyan}├─ {icon}  {$1}Chassis{$2}",
+            "keyIcon": "\uf233",
+            "text": "systemd-detect-virt | awk '{print toupper($0)}'"
+        },
+        {
+            "type": "cpu",
+            "key": "{#cyan}├─ {icon}  {$1}CPU{$2}",
+            "showPeCoreCount": true
+        },
+        {
+            "type": "memory",
+            "key": "{#cyan}├─ {icon}  {$1}RAM{$2}",
+            "format": "{percentage-bar} {used} \/ {total}",
+            "percent": {
+                "type": ["bar"]
+            }
+        },
+        {
+            "type": "disk",
+            "key": "{#cyan}├─ {icon}  {$1}Disk{$2}",
+            "keyIcon": "\udb80\ude49",
+            "format": "{size-percentage-bar} {size-used} \/ {size-total} [{filesystem}] ({mountpoint})",
+            "percent": {
+                "type": ["bar"]
+            }
+        },
+        {
+            "type": "swap",
+            "key": "{#cyan}╰─ {icon}  {$1}SWAP{$2}",
+            "format": "{percentage-bar} {used} \/ {total}",
+            "percent": {
+                "type": ["bar"]
+            }
+        },
+        "break",
+        // Network section with yellow color theme
+        {
+            "type": "custom",
+            "key": " ",
+            "format": "\uD83C\uDF0D{#bright_yellow} Network "
+        },
+        {
+            "type": "localip",
+            "key": "{#yellow}├─ {icon}  {$1}IP Addr{$2}",
+            "keyIcon": "\uDB82\uDE60",
+            "format": "[{4}] {1}"
+        },
+        {
+            "type": "dns",
+            "key": "{#yellow}╰─ {icon}  {$1}DNS{$2}",
+            "keyIcon": "\uDB80\uDDD6"
+        },
+        "break",
+        // Uptime section with magenta color theme
+        {
+            "type": "custom",
+            "key": " ",
+            "format": "\uD83D\uDD54{#bright_magenta} Uptime "
+        },
+        {
+            "type": "datetime",
+            "key": "{#magenta}├─ {icon}  {$1}Date/Time{$2}",
+            "format": "{day-pretty}-{month-name-short}-{year} / {hour-pretty}:{minute-pretty}:{second-pretty} {timezone-name}"
+        },
+        {
+            "type": "uptime",
+            "key": "{#magenta}╰─ {icon}  {$1}Uptime{$2}"
+        },
+
+        // End with color palette and line break
+        "break",                                             // Add a blank line
+        {
+            "type": "colors",
+            "key": " "            
+        }
+    ]
+}
+ 
